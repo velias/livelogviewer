@@ -54,20 +54,7 @@ public class MemoryLogger extends AppenderSkeleton {
     return false;
   }
 
-  int cnt = 0;
-
   public synchronized List<LoggingEvent> getEventsBetween(String level, long startTime, long endTime) {
-
-    // TODO remove
-    switch (cnt % 3) {
-    case 0:
-      log.error("Test error", new Exception());
-    case 1:
-      log.fatal("Test fatal", new Exception());
-    case 2:
-      log.warn("Test warn", new Exception());
-    }
-    cnt++;
 
     List<LoggingEvent> matches = new ArrayList<LoggingEvent>();
 
