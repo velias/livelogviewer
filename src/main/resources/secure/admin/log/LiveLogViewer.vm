@@ -1,0 +1,66 @@
+$!webResourceManager.requireResource("org.jboss.labs.jira.plugin.livelogviewer:LiveLogResources")
+<html>
+  <head>
+    <title>${action.getText("liveLog.page.title")}</title>
+    <script type="text/javascript">
+      var contextPath="$req.contextPath";
+    </script>
+  </head>
+  <body>
+    <br />
+    <form name="filterForm" onsubmit="return false;">
+    	<table>
+    		<tr>
+    			<td>Filter Mode:</td>  
+    			<td valign="middle">
+    				<select id="filterMode" name="filterMode" onChange="setFilterMode(event)"> 
+    					<option value="AT_LEAST">At least</option>
+    					<option value="ONLY">Only</option>
+    				</select>
+    			</td>
+    			<td>log level</td>  
+    			<td valign="middle">
+    				<select id="logLevel" name="logLevel" onChange="setLevelFilter(event)"> 
+    					<option value="All">All</option>
+    					<option value="FATAL">Fatal</option>
+    					<option value="ERROR">Error</option>
+    					<option value="WARN">Warn</option>
+    					<option value="INFO">Info</option>
+    					<option value="DEBUG">Debug</option>
+    				</select>
+    			</td>
+          <td valign="middle">Ordering:</td>  
+          <td valign="middle">
+            <select id="ordering" name="ordering" onChange="setOrdering(event)"> 
+              <option value="-1">New at bottom</option>
+              <option value="0">New at top</option>
+            </select>
+          </td>
+          <td width="10px">&nbsp;</td>
+    			<td>Refresh interval (in Sec.):</td>  
+    			<td valign="middle"><input type="text" id="intervalDelay" name="intervalDelay" value="5" size="2" onChange="setIntervalDelay(event)"/></td>
+    			<td valign="middle"><input type="submit" id="refresh" name="refresh" value="Refresh now" onclick="loadLog(); return false;"/></td>
+    		</tr>
+    	</table>
+    </form>
+    
+    <h2>Log Contents</h2>
+    <table id="contentTable" border="0" cellpadding="2" cellspacing="0" width="100%">
+    	<thead>
+    		<tr>
+    			<th>Time</th>
+    			<th>Thread</th>
+    			<th>Level</th>
+    			<th>Category</th>
+    			<th>Message</th>
+    		</tr>
+    	</thead>
+    	<tbody id="logContents">
+    	</tbody>
+    </table>
+    <script type="text/javascript">
+    	loadLog(); 
+    	intervalId = window.setInterval('loadLog()',5000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<atlassian-plugin key="org.jboss.labs.jira.plugin.livelogviewer" name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="OSS contributors" url="http://github.com" />
+		<application-version min="5.0" max="5.0" />
+	</plugin-info>
+
+	<resource type="download" name="js/" location="js/" />
+	<resource type="download" name="css/" location="css/" />
+
+	<component key="liveLogManager" name="Live Log Manager" class="org.jboss.labs.jira.plugin.livelogviewer.DefaultLiveLogManager">
+		<interface>org.jboss.labs.jira.plugin.livelogviewer.LiveLogManager</interface>
+	</component>
+
+	<web-resource key="LiveLogResources" i18n-name-key="admin.web.resources.livelogger.name" name="LiveLogResources" state='enabled'>
+		<resource type="download" name="log.css" location="css/log4j.css">
+			<param name="source" value="webContext" />
+		</resource>
+		<resource type="download" name="log.js" location="js/log.js">
+			<param name="source" value="webContext" />
+		</resource>
+	</web-resource>
+
+	<web-item key="liveLogJira" name="'Log Viewer' Admin menu item" section="system.admin/system" weight="5">
+		<label key="liveLog.label" />
+		<tooltip key="liveLog.tooltip" />
+		<link linkId="log">/secure/admin/livelogviewer/LiveLogViewer.jspa</link>
+		<resource type="i18n" name="i18nGlobal" location="org.jboss.labs.jira.plugin.livelogviewer.i18n" />
+	</web-item>
+
+	<servlet name="LiveLogServlet" key="LiveLogServlet" class="org.jboss.labs.jira.plugin.livelogviewer.jira.JiraLiveLogServlet">
+		<description>Prints out current contents of the log</description>
+		<url-pattern>/log</url-pattern>
+	</servlet>
+
+	<webwork1 key="LiveLogActions" name="LiveLogActions" class="java.lang.Object">
+		<resource type="i18n" name="i18nGlobal" location="org.jboss.labs.jira.plugin.livelogviewer.i18n" />
+		<actions>
+			<!-- Live Log Viewer -->
+			<action name="admin.livelogviewer.LiveLogViewer" alias="LiveLogViewer">
+				<view name="success">/secure/admin/log/LiveLogViewer.vm</view>
+			</action>
+		</actions>
+	</webwork1>
+
+</atlassian-plugin>
