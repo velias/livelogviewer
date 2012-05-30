@@ -38,14 +38,11 @@
 		</developer>
 	</developers>
 
-    <!-- TODO: Complete source control details -->
-    <!--
-    <scm>
-		<connection></connection>
-		<developerConnection></developerConnection>
-		<url></url>
+  <scm>
+		<connection>scm:git:git://github.com/velias/livelogviewer.git</connection>
+		<developerConnection>scm:git:git@github.com:velias/livelogviewer.git</developerConnection>
+		<url>https://github.com/velias/livelogviewer</url>
 	</scm>
-	-->
 
 	<build>
 		<plugins>
