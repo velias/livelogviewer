@@ -16,68 +16,70 @@ import org.apache.log4j.spi.LoggingEvent;
  */
 public class MemoryLogger extends AppenderSkeleton {
 
-  private static final Logger log = LogManager.getLogger(MemoryLogger.class);
+	private static final Logger log = LogManager.getLogger(MemoryLogger.class);
 
-  private CyclicBuffer entries = new CyclicBuffer(1000);
-  private CyclicBuffer entries_fatal = new CyclicBuffer(500);
-  private CyclicBuffer entries_error = new CyclicBuffer(500);
-  private CyclicBuffer entries_warn = new CyclicBuffer(500);
+	private CyclicBuffer entries = new CyclicBuffer(1000);
+	private CyclicBuffer entries_fatal = new CyclicBuffer(500);
+	private CyclicBuffer entries_error = new CyclicBuffer(500);
+	private CyclicBuffer entries_warn = new CyclicBuffer(500);
 
-  @Override
-  protected synchronized void append(LoggingEvent loggingEvent) {
-    try {
-      entries.add(loggingEvent);
-      if (loggingEvent.getLevel().isGreaterOrEqual(Level.FATAL)) {
-        entries_fatal.add(loggingEvent);
-      }
-      if (loggingEvent.getLevel().isGreaterOrEqual(Level.ERROR)) {
-        entries_error.add(loggingEvent);
-      }
-      if (loggingEvent.getLevel().isGreaterOrEqual(Level.WARN)) {
-        entries_warn.add(loggingEvent);
-      }
-    } catch (Error e) {
-      // nothing to do, just to be sure no error will be thrown from here
-    }
-  }
+	@Override
+	protected synchronized void append(LoggingEvent loggingEvent) {
+		if (!loggingEvent.getLoggerName().startsWith("com.atlassian.jira.web.filters.accesslog.")) {
+			try {
+				entries.add(loggingEvent);
+				if (loggingEvent.getLevel().isGreaterOrEqual(Level.FATAL)) {
+					entries_fatal.add(loggingEvent);
+				}
+				if (loggingEvent.getLevel().isGreaterOrEqual(Level.ERROR)) {
+					entries_error.add(loggingEvent);
+				}
+				if (loggingEvent.getLevel().isGreaterOrEqual(Level.WARN)) {
+					entries_warn.add(loggingEvent);
+				}
+			} catch (Error e) {
+				// nothing to do, just to be sure no error will be thrown from here
+			}
+		}
+	}
 
-  @Override
-  public void close() {
-    entries.resize(1);
-    entries_fatal.resize(1);
-    entries_error.resize(1);
-    entries_warn.resize(1);
-  }
+	@Override
+	public void close() {
+		entries.resize(1);
+		entries_fatal.resize(1);
+		entries_error.resize(1);
+		entries_warn.resize(1);
+	}
 
-  @Override
-  public boolean requiresLayout() {
-    return false;
-  }
+	@Override
+	public boolean requiresLayout() {
+		return false;
+	}
 
-  public synchronized List<LoggingEvent> getEventsBetween(String level, long startTime, long endTime) {
+	public synchronized List<LoggingEvent> getEventsBetween(String level, long startTime, long endTime) {
 
-    List<LoggingEvent> matches = new ArrayList<LoggingEvent>();
+		List<LoggingEvent> matches = new ArrayList<LoggingEvent>();
 
-    CyclicBuffer set = entries;
-    if ("FATAL".equalsIgnoreCase(level))
-      set = entries_fatal;
-    if ("ERROR".equalsIgnoreCase(level))
-      set = entries_error;
-    if ("WARN".equalsIgnoreCase(level))
-      set = entries_warn;
+		CyclicBuffer set = entries;
+		if ("FATAL".equalsIgnoreCase(level))
+			set = entries_fatal;
+		if ("ERROR".equalsIgnoreCase(level))
+			set = entries_error;
+		if ("WARN".equalsIgnoreCase(level))
+			set = entries_warn;
 
-    log.debug("getEventsBetween level=" + level + " start=" + startTime + " end=" + endTime + " numOfAvailableEntries="
-        + set.length());
+		log.debug("getEventsBetween level=" + level + " start=" + startTime + " end=" + endTime + " numOfAvailableEntries="
+				+ set.length());
 
-    for (int i = 0; i < set.length(); i++) {
-      LoggingEvent event = (LoggingEvent) set.get(i);
-      if ((startTime != -1 && event.timeStamp < startTime) || (endTime != -1 && event.timeStamp > endTime)) {
-        continue;
-      }
-      matches.add(event);
-    }
+		for (int i = 0; i < set.length(); i++) {
+			LoggingEvent event = (LoggingEvent) set.get(i);
+			if ((startTime != -1 && event.timeStamp < startTime) || (endTime != -1 && event.timeStamp > endTime)) {
+				continue;
+			}
+			matches.add(event);
+		}
 
-    return matches;
-  }
+		return matches;
+	}
 
 }

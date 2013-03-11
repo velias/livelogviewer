@@ -13,7 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.labs.jira.plugin</groupId>
     <artifactId>livelogviewer</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <name>Live Log Viewer</name>
     <packaging>atlassian-plugin</packaging>
@@ -65,6 +65,51 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+		  <plugins>
+		    <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+		    <plugin>
+		      <groupId>org.eclipse.m2e</groupId>
+		      <artifactId>lifecycle-mapping</artifactId>
+		      <version>1.0.0</version>
+		      <configuration>
+		        <lifecycleMappingMetadata>
+		          <pluginExecutions>
+		            <pluginExecution>
+		              <pluginExecutionFilter>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-resources-plugin</artifactId>
+		                <versionRange>[2.3,)</versionRange>
+		                <goals>
+		                  <goal>testResources</goal>
+		                  <goal>resources</goal>
+		                </goals>
+		              </pluginExecutionFilter>
+		              <action>
+		                <ignore></ignore>
+		              </action>
+		            </pluginExecution>
+		            <pluginExecution>
+		              <pluginExecutionFilter>
+		                <groupId>com.atlassian.maven.plugins</groupId>
+		                <artifactId>maven-jira-plugin</artifactId>
+		                <versionRange>[3.1.1,)</versionRange>
+		                <goals>
+		                  <goal>copy-bundled-dependencies</goal>
+		                  <goal>filter-plugin-descriptor</goal>
+		                  <goal>generate-manifest</goal>
+		                </goals>
+		              </pluginExecutionFilter>
+		              <action>
+		                <ignore></ignore>
+		              </action>
+		            </pluginExecution>
+		          </pluginExecutions>
+		        </lifecycleMappingMetadata>
+		      </configuration>
+		    </plugin>
+		  </plugins>
+		</pluginManagement>
 	</build>
   
   <pluginRepositories>

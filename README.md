@@ -20,6 +20,9 @@ Plugin .jar file is then placed in /target subfolder
 Changelog
 -------------
 
+1.1 - 2013-03-11
+- messages for com.atlassian.jira.web.filters.accesslog.* loggers are ignored
+
 1.0 - 2012-05-30 - changes against original "Live Logging Plugin" 0.9.2
 - upgrade to JIRA 5 (User class change, related permission checking change)
 - plugin type changed to Type 2 so now can be installed and upgraded over UPM
