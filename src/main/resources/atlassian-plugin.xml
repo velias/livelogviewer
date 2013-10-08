@@ -3,7 +3,7 @@
 		<description>${project.description}</description>
 		<version>${project.version}</version>
 		<vendor name="OSS contributors" url="http://github.com" />
-		<application-version min="5.0" max="5.0" />
+		<application-version min="6.0" max="7.0" />
 	</plugin-info>
 
 	<resource type="download" name="js/" location="js/" />
@@ -22,7 +22,11 @@
 		</resource>
 	</web-resource>
 
-	<web-item key="liveLogJira" name="'Log Viewer' Admin menu item" section="system.admin/system" weight="5">
+  <web-section key="liveLogJira-ext-admin" name="Module Admin Menu part" location="top_plugins_section" weight="90">
+    <description>Live Log Viewer</description>
+    <label>Live Log Viewer</label>
+  </web-section>
+	<web-item key="liveLogJira" name="'Log Viewer' Admin menu item" section="top_plugins_section/liveLogJira-ext-admin" weight="5">
 		<label key="liveLog.label" />
 		<tooltip key="liveLog.tooltip" />
 		<link linkId="log">/secure/admin/livelogviewer/LiveLogViewer.jspa</link>

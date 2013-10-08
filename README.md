@@ -20,6 +20,9 @@ Plugin .jar file is then placed in /target subfolder
 Changelog
 -------------
 
+1.2 - 2013-10-08
+- patched admin GUI link for jira 6 to get rid of warn messages in log file and to be always visible in menu
+
 1.1 - 2013-03-11
 - messages for com.atlassian.jira.web.filters.accesslog.* loggers are ignored
 
