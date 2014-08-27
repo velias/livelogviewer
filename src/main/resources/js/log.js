@@ -54,10 +54,10 @@ function loadXml(logData) {
 				var date = new Date();
 				date.setTime(parseInt(event.getAttribute('timestamp')));
 				var timestamp = "" + date.getFullYear() + "-" + pad(date.getMonth() + 1, 2) + "-" + pad(date.getDate(), 2) + " " + pad(date.getHours(),2) + ":" + pad(date.getMinutes(),2) + ":" + pad(date.getSeconds(),2) + "," + pad(date.getTime() % 1000, 3);
-				row.insertCell(-1).appendChild(document.createTextNode(timestamp));
-				row.insertCell(-1).appendChild(document.createTextNode(event.getAttribute('thread')));
-				row.insertCell(-1).appendChild(document.createTextNode(level));
-				row.insertCell(-1).appendChild(document.createTextNode(event.getAttribute('logger')));
+				createCell(row, timestamp);
+				createCell(row, event.getAttribute('thread'));
+				createCell(row, level);
+				createCell(row, event.getAttribute('logger'));
 				mc = row.insertCell(-1);
 				for (var j = 0; j < event.childNodes.length; j++) {
 					var node = event.childNodes[j];
@@ -82,6 +82,12 @@ function loadXml(logData) {
 			}
 		}
 	}
+}
+
+function createCell(row, value) {
+	cell = row.insertCell(-1);
+	cell.appendChild(document.createTextNode(value));
+	cell.style.verticalAlign = "top";
 }
 
 function pad(input, length) {
