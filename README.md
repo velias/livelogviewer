@@ -10,7 +10,7 @@ This plugin is Type 2, so can be installed and upgraded directly from JIRA Aamin
 
 Build
 -------------
-You need Apache Maven 2.2 and JDK 1.6 installed, then run next command in project root directory
+You need Apache Maven 2.2 and JDK 1.8 installed, then run next command in project root directory
 
 mvn clean package
 
@@ -19,6 +19,10 @@ Plugin .jar file is then placed in /target subfolder
 
 Changelog
 -------------
+
+1.4 - 2016-10-06
+- update to work in jira 7.x (not compatible with older jira versions anymore)
+- added progress indicator shown during data loading 
 
 1.3 - 2014-08-27
 - top valign added to table cells for better readability 

@@ -42,7 +42,7 @@ public class DefaultLiveLogManager implements LiveLogManager, DisposableBean {
     return appender;
   }
 
-  @Override
+  @Override 
   public void destroy() {
     if (appender != null) {
       Enumeration<?> currentLoggers = LogManager.getRootLogger().getLoggerRepository().getCurrentLoggers();

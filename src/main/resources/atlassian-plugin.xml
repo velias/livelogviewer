@@ -3,7 +3,7 @@
 		<description>${project.description}</description>
 		<version>${project.version}</version>
 		<vendor name="OSS contributors" url="http://github.com" />
-		<application-version min="6.0" max="7.0" />
+		<application-version min="7.0" max="7.2" />
 	</plugin-info>
 
 	<resource type="download" name="js/" location="js/" />
@@ -13,20 +13,19 @@
 		<interface>org.jboss.labs.jira.plugin.livelogviewer.LiveLogManager</interface>
 	</component>
 
-	<web-resource key="LiveLogResources" i18n-name-key="admin.web.resources.livelogger.name" name="LiveLogResources" state='enabled'>
-		<resource type="download" name="log.css" location="css/log4j.css">
-			<param name="source" value="webContext" />
-		</resource>
-		<resource type="download" name="log.js" location="js/log.js">
-			<param name="source" value="webContext" />
-		</resource>
+	<web-resource key="LiveLogResources" i18n-name-key="admin.web.resources.livelogger.name" name="LiveLogResources"
+		state='enabled'>
+		<resource type="download" name="log.css" location="css/log4j.css" />
+		<resource type="download" name="log.js" location="js/log.js" />
 	</web-resource>
 
-  <web-section key="liveLogJira-ext-admin" name="Module Admin Menu part" location="top_plugins_section" weight="90">
-    <description>Live Log Viewer</description>
-    <label>Live Log Viewer</label>
-  </web-section>
-	<web-item key="liveLogJira" name="'Log Viewer' Admin menu item" section="top_plugins_section/liveLogJira-ext-admin" weight="5">
+	<web-section key="liveLogJira-ext-admin" name="Module Admin Menu part" location="top_plugins_section"
+		weight="90">
+		<description>Live Log Viewer</description>
+		<label>Live Log Viewer</label>
+	</web-section>
+	<web-item key="liveLogJira" name="'Log Viewer' Admin menu item" section="top_plugins_section/liveLogJira-ext-admin"
+		weight="5">
 		<label key="liveLog.label" />
 		<tooltip key="liveLog.tooltip" />
 		<link linkId="log">/secure/admin/livelogviewer/LiveLogViewer.jspa</link>
@@ -42,7 +41,7 @@
 		<resource type="i18n" name="i18nGlobal" location="org.jboss.labs.jira.plugin.livelogviewer.i18n" />
 		<actions>
 			<!-- Live Log Viewer -->
-			<action name="admin.livelogviewer.LiveLogViewer" alias="LiveLogViewer">
+			<action name="org.jboss.labs.jira.plugin.livelogviewer.jira.LiveLogViewerAction" alias="LiveLogViewer">
 				<view name="success">/secure/admin/log/LiveLogViewer.vm</view>
 			</action>
 		</actions>
