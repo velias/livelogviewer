@@ -1,12 +1,12 @@
-'Live Log Viewer' JIRA plugin
+'Live Log Viewer' Jira plugin
 ==============================
 
-This is plugin for Atlassian JIRA which allows realtime view of the server log messages.
+This is plugin for Atlassian Jira which allows realtime view of the server log messages.
 Plugin is based on "Live Logging Plugin" 0.9.2 version source codes available at https://marketplace.atlassian.com/plugins/com.atlassian.log with BSD license.
 
 Installation
 -------------
-This plugin is Type 2, so can be installed and upgraded directly from JIRA Aaministration GUI (over UPM) 
+This plugin is Type 2, so can be installed and upgraded directly from Jira Aaministration GUI (over UPM) 
 
 Build
 -------------
