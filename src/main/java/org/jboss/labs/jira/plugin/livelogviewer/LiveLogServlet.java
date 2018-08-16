@@ -75,6 +75,7 @@ public abstract class LiveLogServlet extends HttpServlet {
     resp.setContentType("application/xml");
     resp.setHeader("Cache-Control", "no-cache, must-revalidate");
     resp.setHeader("Expires", "Mon, 28 May 2012 01:00:00 GMT");
+    resp.setCharacterEncoding("UTF-8");
     PrintWriter writer = resp.getWriter();
     writer.write("<?xml version='1.0' encoding='UTF-8'?>\n");
     writer.write("<events>");

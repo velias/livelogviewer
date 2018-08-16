@@ -1,5 +1,7 @@
 package org.jboss.labs.jira.plugin.livelogviewer;
 
+import java.util.regex.Pattern;
+
 import org.apache.log4j.Layout;
 import org.apache.log4j.helpers.Transform;
 import org.apache.log4j.spi.LoggingEvent;
@@ -22,7 +24,7 @@ public class NoNSXMLLayout extends Layout {
     sb.append(" thread=\"").append(event.getThreadName()).append("\"");
     sb.append(">");
     sb.append("<message><![CDATA[");
-    Transform.appendEscapingCDATA(sb, event.getRenderedMessage());
+    Transform.appendEscapingCDATA(sb, sanitizeXmlChars(event.getRenderedMessage()));
     sb.append("]]>");
     sb.append("</message>");
     if (event.getThrowableInformation() != null) {
@@ -40,6 +42,18 @@ public class NoNSXMLLayout extends Layout {
     return sb.toString();
   }
 
+  public static String sanitizeXmlChars(String xml) {
+      if (xml == null || ("".equals(xml))) return "";
+      // ref : http://www.w3.org/TR/REC-xml/#charsets
+      // jdk 7
+      Pattern xmlInvalidChars =
+        Pattern.compile(
+           "[^\\u0009\\u000A\\u000D\\u0020-\\uD7FF\\uE000-\\uFFFD\\x{10000}-\\x{10FFFF}]"
+        
+          );
+      return xmlInvalidChars.matcher(xml).replaceAll(".");
+    }
+  
   @Override
   public boolean ignoresThrowable() {
     return false;

@@ -20,6 +20,9 @@ Plugin .jar file is then placed in /target subfolder
 Changelog
 -------------
 
+1.5 - 2018-08-16
+- correct XML sanitization of some characters in messages which made xml invalid so nothing showed  
+
 1.4 - 2016-10-06
 - update to work in jira 7.x (not compatible with older jira versions anymore)
 - added progress indicator shown during data loading 
