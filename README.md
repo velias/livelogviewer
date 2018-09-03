@@ -20,6 +20,9 @@ Plugin .jar file is then placed in /target subfolder
 Changelog
 -------------
 
+1.6 - 2018-09-03
+- design updated to match Jira 7 
+
 1.5 - 2018-08-16
 - correct XML sanitization of some characters in messages which made xml invalid so nothing showed  
 

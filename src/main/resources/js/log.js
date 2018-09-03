@@ -31,10 +31,11 @@ function loadLog() {
 				loadXml(xmlHttp.responseXML);
 			}
 		}
-		document.getElementById("log-loading-progress-indicator").style.visibility = "hidden";
+		AJS.progressBars.update("#log-loading-progress-indicator",1);
 	}
     
-    document.getElementById("log-loading-progress-indicator").style.visibility = "visible";
+    AJS.progressBars.setIndeterminate("#log-loading-progress-indicator");
+    
     
     xmlHttp.open("GET",contextPath + "/plugins/servlet/log?level="+levelFilter+"&from=" + lastTime ,true);
     lastTime = new Date().getTime();

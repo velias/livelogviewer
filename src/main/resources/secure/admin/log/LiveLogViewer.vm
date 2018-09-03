@@ -6,20 +6,20 @@
     </script>
   </head>
   <body>
-    <br />
-    <form name="filterForm" onsubmit="return false;">
+    <h2>${action.getText("liveLog.page.title")}</h2>
+    <form name="filterForm" onsubmit="return false;" class="aui">
     	<table>
     		<tr>
     			<td>Filter Mode:</td>  
     			<td valign="middle">
-    				<select id="filterMode" name="filterMode" onChange="setFilterMode(event)"> 
+    				<select id="filterMode" name="filterMode" onChange="setFilterMode(event)" class="select"> 
     					<option value="AT_LEAST">At least</option>
     					<option value="ONLY">Only</option>
     				</select>
     			</td>
     			<td>log level</td>  
     			<td valign="middle">
-    				<select id="logLevel" name="logLevel" onChange="setLevelFilter(event)"> 
+    				<select id="logLevel" name="logLevel" onChange="setLevelFilter(event)" class="select"> 
     					<option value="All">All</option>
     					<option value="FATAL">Fatal</option>
     					<option value="ERROR">Error</option>
@@ -30,25 +30,25 @@
     			</td>
           <td valign="middle">Ordering:</td>  
           <td valign="middle">
-            <select id="ordering" name="ordering" onChange="setOrdering(event)"> 
+            <select id="ordering" name="ordering" onChange="setOrdering(event)" class="select"> 
               <option value="-1">New at bottom</option>
               <option value="0">New at top</option>
             </select>
           </td>
           <td width="10px">&nbsp;</td>
     			<td>Refresh interval (in Sec.):</td>  
-    			<td valign="middle"><input type="text" id="intervalDelay" name="intervalDelay" value="5" size="2" onChange="setIntervalDelay(event)"/></td>
-    			<td valign="middle"><input type="submit" id="refresh" name="refresh" value="Refresh now" onclick="loadLog(); return false;"/></td>
+    			<td valign="middle"><input type="text" id="intervalDelay" name="intervalDelay" value="5" size="2" onChange="setIntervalDelay(event)" class="text"/></td>
+    			<td valign="middle"><input type="submit" id="refresh" name="refresh" value="Refresh now" onclick="loadLog(); return false;" class="submit button"/></td>
     		</tr>
     	</table>
     </form>
     
-    <div id="log-loading-progress-indicator" class="aui-progress-indicator" style="visibility: hidden">
+    <div id="log-loading-progress-indicator" class="aui-progress-indicator">
         <span class="aui-progress-indicator-value"></span>
     </div>
     
-    <h2>Log Contents</h2>
-    <table id="contentTable" border="0" cellpadding="2" cellspacing="0" width="100%">
+    <h3>Log Contents</h3>
+    <table id="contentTable" border="0" cellpadding="2" cellspacing="0" width="100%" class="aui">
     	<thead>
     		<tr>
     			<th>Time</th>

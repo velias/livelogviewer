@@ -1,16 +1,16 @@
 .FATAL {
-	background-color: #ff3c3c;
+	background-color: #ff3c3c !important;
 	font-weight: bold;
 	font-size:10px;
 }
 
 .ERROR {
-	background-color: #ff8282;
+	background-color: #ff8282 !important;
 	font-size:10px;
 }
 
 .WARN {
-	background-color: #ffb366;
+	background-color: #ffb366 !important;
 	font-size:9px;
 }
 
@@ -21,15 +21,6 @@
 .DEBUG {
   font-size: 9px;
 	background-color: #EAEAFF;
-}
-
-thead {
-	background-color: #f0f0f0;
-}
-
-#contentTable th, #contentTable td {
-	text-align: left;
-	border: 1px solid #cccccc;
 }
 
 #contentTable pre {
